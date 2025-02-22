@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class SubamrinControl : MonoBehaviour
 
 {
-    [SerializeField] public float vitesse;
+    [SerializeField] private float Vitesse;
 
 
 
@@ -13,7 +13,7 @@ public class SubamrinControl : MonoBehaviour
 
     private Vector3 Direction;
 
-    private Animation animator;
+    private Animator animator;
 
 
     // Start is called before the first frame update
@@ -22,7 +22,7 @@ public class SubamrinControl : MonoBehaviour
         
 
        rb = GetComponent<Rigidbody>();
-       animator = GetComponent<Animation>();
+       animator = GetComponent<Animator>();
 
     }
 
@@ -30,14 +30,8 @@ public class SubamrinControl : MonoBehaviour
     void OnMovementx(InputValue Directionx)
     {
 
-
-       
-
-
-
-
-
-       
+        Vector2 vitesse = Directionx.Get<Vector3>() * Vitesse;
+          Direction = new Vector3(vitesse.x, vitesse.y, 0f);
 
         Debug.Log("go front");
  
@@ -46,21 +40,50 @@ public class SubamrinControl : MonoBehaviour
 
     void OnMovementy(InputValue Directiony)
     {
+        if(Directiony.isPressed)
+        {
 
+            
+            
+            
+            
+            
+            animator.SetBool("MovementY", true);
+
+        }
+
+
+        else{
+            animator.SetBool("MovementY", false);
+        }
         Debug.Log("Go up");
-
-        
 
     }
 
     void OnSPEED(InputValue Shift)
     {
 
+        if(Shift.isPressed){
 
 
-
-
+        animator.SetBool("Vitesse shift", true);
+        
+        
+        
         Debug.Log("go fast");
+
+
+        }
+
+
+
+        else{
+
+            animator.SetBool("Vitesse shift", false);
+
+            Debug.Log("go slow");
+
+        }
 
 
     }
@@ -69,14 +92,12 @@ public class SubamrinControl : MonoBehaviour
     // Update is called once per frame
     void FixUpdate()
     {
+
+        rb.AddForce(Direction, ForceMode.VelocityChange);
         
 
 
-
-
-
+        animator.SetFloat("vitesse", 4);
     }
-
-
 
 }
