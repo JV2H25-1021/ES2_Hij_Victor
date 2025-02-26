@@ -30,24 +30,38 @@ public class SubamrinControl : MonoBehaviour
     void OnMovementx(InputValue Directionx)
     {
 
-        Vector2 vitesse = Directionx.Get<Vector3>() * Vitesse;
+        Vector2 vitesse = Directionx.Get<Vector2>() * Vitesse;
           Direction = new Vector3(vitesse.x, vitesse.y, 0f);
 
-        Debug.Log("go front");
+
+
+
+        if (Directionx.isPressed)
+        {
+            animator.SetFloat("vitesse", Vitesse);
+        }
+
+        else
+        {
+            animator.SetFloat("vitesse", 0);
+        }
+            Debug.Log("go front");
  
     }
 
 
     void OnMovementy(InputValue Directiony)
     {
+
+
+
+
+
+
+
         if(Directiony.isPressed)
         {
 
-            
-            
-            
-            
-            
             animator.SetBool("MovementY", true);
 
         }
@@ -64,6 +78,8 @@ public class SubamrinControl : MonoBehaviour
     {
 
         if(Shift.isPressed){
+
+
 
 
         animator.SetBool("Vitesse shift", true);
@@ -93,7 +109,9 @@ public class SubamrinControl : MonoBehaviour
     void FixUpdate()
     {
 
-        rb.AddForce(Direction, ForceMode.VelocityChange);
+        Vector3 movement = Direction;
+
+        rb.AddForce(movement, ForceMode.VelocityChange);
         
 
 
