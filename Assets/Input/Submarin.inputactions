@@ -9,7 +9,7 @@
                     "name": "Movement x",
                     "type": "Value",
                     "id": "bd89053d-c13a-4361-be48-e2c1d00fb6e0",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -27,35 +27,13 @@
                     "name": "Movement y",
                     "type": "Value",
                     "id": "9f16b031-baa9-4f60-8059-8ff47ffb7ae4",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "62d2d023-51ac-40cc-a4f5-6f8a0c7e754b",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Movement x",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "dba53535-760b-4132-81e2-62500c4f0e56",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Movement x",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "0b40afde-2a37-4131-8594-0dbc539e8bee",
@@ -72,7 +50,7 @@
                     "id": "209ee391-9f2c-491f-8e45-2c9ba15bb83b",
                     "path": "<Keyboard>/q",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "Scale",
                     "groups": "Keyboard",
                     "action": "Movement y",
                     "isComposite": false,
@@ -83,9 +61,31 @@
                     "id": "e49b081b-8059-48b3-9841-6c2c12a2ccf7",
                     "path": "<Keyboard>/e",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "Scale(factor=-1)",
                     "groups": "Keyboard",
                     "action": "Movement y",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3a48f2a-8d11-4ff6-8b9e-3f2fa480b50e",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "Scale",
+                    "groups": "Keyboard",
+                    "action": "Movement x",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5a727d9f-fcfb-4319-a29f-6ef42127b9e4",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "Scale(factor=-1)",
+                    "groups": "Keyboard",
+                    "action": "Movement x",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

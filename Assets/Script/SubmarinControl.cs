@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class SubamrinControl : MonoBehaviour
+public class SubmarinControl : MonoBehaviour
 
 {
     [SerializeField] private float Vitesse;
-
+    [SerializeField] private float verticalSpeed;
 
 
     private Rigidbody rb;
 
-    private Vector3 Direction;
+    private float Direction;
 
     private Animator animator;
 
+    private float MovementVertical;
 
     // Start is called before the first frame update
     void Start()
@@ -24,14 +25,23 @@ public class SubamrinControl : MonoBehaviour
        rb = GetComponent<Rigidbody>();
        animator = GetComponent<Animator>();
 
+
     }
 
 
     void OnMovementx(InputValue Directionx)
     {
 
-        Vector2 vitesse = Directionx.Get<Vector3>() * Vitesse;
-          Direction = new Vector3(vitesse.x, vitesse.y, 0f);
+        Direction = Directionx.Get<float>();
+
+        if(Direction !=0){
+
+            Vitesse = 0.35f;
+
+
+        }
+
+        else{Vitesse=0;}
 
         Debug.Log("go front");
  
@@ -40,14 +50,12 @@ public class SubamrinControl : MonoBehaviour
 
     void OnMovementy(InputValue Directiony)
     {
-        if(Directiony.isPressed)
-        {
 
-            
-            
-            
-            
-            
+
+         MovementVertical = Directiony.Get<float>();
+
+        if(MovementVertical != 0)
+        {         
             animator.SetBool("MovementY", true);
 
         }
@@ -66,6 +74,8 @@ public class SubamrinControl : MonoBehaviour
         if(Shift.isPressed){
 
 
+        Vitesse = 0.35f * 2;
+            
         animator.SetBool("Vitesse shift", true);
         
         
@@ -79,6 +89,8 @@ public class SubamrinControl : MonoBehaviour
 
         else{
 
+            Vitesse = 0.35f;
+
             animator.SetBool("Vitesse shift", false);
 
             Debug.Log("go slow");
@@ -90,14 +102,19 @@ public class SubamrinControl : MonoBehaviour
 
 
     // Update is called once per frame
-    void FixUpdate()
+    void FixedUpdate()
     {
 
-        rb.AddForce(Direction, ForceMode.VelocityChange);
+        Vector3 DirectionBouger = Direction * Vitesse * transform.forward;
+
+        rb.AddForce(DirectionBouger, ForceMode.VelocityChange);
         
 
+        Vector3 BougerVertical = Vector3.up * verticalSpeed * MovementVertical;
+        rb.AddForce(BougerVertical, ForceMode.VelocityChange);
 
-        animator.SetFloat("vitesse", 4);
+
+        animator.SetFloat("vitesse", Vitesse);
     }
 
 }

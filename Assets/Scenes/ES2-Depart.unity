@@ -1847,8 +1847,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Submarin
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -1864,7 +1864,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27cf9a6325b18df408ffea656ea7a3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Vitesse: 2
+  Vitesse: 0
+  verticalSpeed: 0.25
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
