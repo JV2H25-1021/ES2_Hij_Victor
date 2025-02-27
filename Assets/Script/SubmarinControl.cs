@@ -32,6 +32,7 @@ public class SubmarinControl : MonoBehaviour
     void OnMovementx(InputValue Directionx)
     {
 
+
         Direction = Directionx.Get<float>();
 
         if(Direction !=0){
@@ -43,7 +44,20 @@ public class SubmarinControl : MonoBehaviour
 
         else{Vitesse=0;}
 
-        Debug.Log("go front");
+
+
+
+
+        if (Directionx.isPressed)
+        {
+            animator.SetFloat("vitesse", Vitesse);
+        }
+
+        else
+        {
+            animator.SetFloat("vitesse", 0);
+        }
+            Debug.Log("go front");
  
     }
 
@@ -52,10 +66,12 @@ public class SubmarinControl : MonoBehaviour
     {
 
 
+
          MovementVertical = Directiony.Get<float>();
 
         if(MovementVertical != 0)
         {         
+
             animator.SetBool("MovementY", true);
 
         }
@@ -72,6 +88,7 @@ public class SubmarinControl : MonoBehaviour
     {
 
         if(Shift.isPressed){
+
 
 
         Vitesse = 0.35f * 2;
@@ -105,10 +122,10 @@ public class SubmarinControl : MonoBehaviour
     void FixedUpdate()
     {
 
+
         Vector3 DirectionBouger = Direction * Vitesse * transform.forward;
 
         rb.AddForce(DirectionBouger, ForceMode.VelocityChange);
-        
 
         Vector3 BougerVertical = Vector3.up * verticalSpeed * MovementVertical;
         rb.AddForce(BougerVertical, ForceMode.VelocityChange);
